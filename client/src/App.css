@@ -1,0 +1,104 @@
+#root {
+  font-family: 'Work Sans';
+}
+
+#brand {
+  font-size: xx-large;
+}
+/* .slick-slider {
+  position: relative;
+  height: 100vh;
+  background-color: red;
+} */
+
+.slick-slide {
+  height: 70vh;
+  width: 100%;
+}
+.slick-slide > div > div {
+  position: relative;
+  height: 70vh;
+}
+
+.slick-slide img {
+  height: 70vh;
+  width: 100%;
+  position: absolute;
+  object-fit: cover;
+  background-color: blue;
+}
+
+.slick-btn {
+  padding: 10px;
+  border: none;
+  background-color: white;
+  color: #000;
+}
+
+.slick-btn:hover {
+  cursor: pointer;
+  background-color: #dddddd;
+  text-decoration: none;
+  color: #000;
+}
+
+.slick-btn:active {
+  background-color: #bbbbbb;
+  border: none;
+  color: #000;
+}
+
+.slick-btn:focus {
+  border: none;
+  outline: none;
+}
+
+.info-container {
+  height: 100%;
+  width: 100%;
+  padding: 1%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-arrow-previous {
+  position: relative;
+  height: 100%;
+  order: 1;
+}
+
+.slider-arrow-next {
+  position: relative;
+  height: 100%;
+  order: 3;
+}
+
+.arrow-btn:hover {
+  cursor: pointer;
+}
+
+.slick-text {
+  order: 2;
+}
+
+.product-img {
+  height: 100%;
+  width: 100%;
+}
+
+.product-link,
+.product-link:focus,
+.product-link:hover,
+.product-link:link {
+  color: #000;
+  text-decoration: none;
+}
+
+.btn {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-radius: none !important;
+  margin-top: 5rem;
+}
