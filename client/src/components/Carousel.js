@@ -1,8 +1,7 @@
-import React from "react";
-import Slider from "react-slick";
-import { Button } from "reactstrap";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 class Carousel extends React.Component {
   state = {
@@ -15,22 +14,23 @@ class Carousel extends React.Component {
       speed: 500,
       autoplaySpeed: 2000,
       fade: true,
+      arrows: false,
     },
     items: [
       {
         id: 1,
-        src: "./images/hp_banner_k60_rgb_pro.webp",
-        info: "K60 Mechanical Gaming Keyboard",
+        src: './images/hp_banner_k60_rgb_pro.webp',
+        info: 'K60 Mechanical Gaming Keyboard',
       },
       {
         id: 2,
-        src: "./images/hp_banner_gift_guide.webp",
-        info: "Holiday Gift Guide 2020",
+        src: './images/hp_banner_gift_guide.webp',
+        info: 'Holiday Gift Guide 2020',
       },
       {
         id: 3,
-        src: "/images/hp_banner_hs70_wired_still.webp",
-        info: "HS70 Bluetooth Gaming Headset",
+        src: '/images/hp_banner_hs70_wired_still.webp',
+        info: 'HS70 Bluetooth Gaming Headset',
       },
     ],
   };
@@ -52,12 +52,12 @@ class Carousel extends React.Component {
             <img src={item.src} alt='' />
             <div
               className='info-container'
-              style={{ backgroundColor: "rgba(0,0,0,0.3)" }}>
+              style={{ backgroundColor: 'rgba(0,0,0,0.3)' }}>
               <div className='text-center  w-75 slick-text'>
                 <h3
                   style={{
-                    color: "white",
-                    textShadow: "0 2px 10px rgba(0,0,0,0.5)",
+                    color: 'white',
+                    textShadow: '0 2px 10px rgba(0,0,0,0.5)',
                   }}
                   className='display-3 font-weight-bold text-uppercase text-wrap slick-text'>
                   {item.info}
