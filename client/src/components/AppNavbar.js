@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Navbar,
   NavItem,
@@ -8,24 +8,66 @@ import {
   NavbarToggler,
   Nav,
   UncontrolledDropdown,
-  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "reactstrap";
+} from 'reactstrap';
+import { useSpring, animated } from 'react-spring';
+
+const AnimatedChevron = ({ angle }) => {
+  const style = useSpring({
+    transform: `rotate(${angle}deg)`,
+  });
+  return (
+    <animated.svg
+      width='1em'
+      height='1em'
+      viewBox='0 0 16 16'
+      class='bi bi-chevron-down'
+      fill='currentColor'
+      xmlns='http://www.w3.org/2000/svg'
+      style={style}>
+      <path
+        fill-rule='evenodd'
+        d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'
+      />
+    </animated.svg>
+  );
+};
 
 class AppNavbar extends React.Component {
   state = {
     isOpen: false,
+    rotate: false,
+    angle: {
+      components: 0,
+      accessories: 0,
+      periphericals: 0,
+    },
   };
 
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
+  rotate = (event) => {
+    let { rotate, angle } = this.state;
+    let element = event.target.name;
+    angle = {
+      ...angle,
+      [element]: rotate ? angle[[element]] + 180 : angle[[element]] - 180,
+    };
+    this.setState({
+      angle,
+      rotate: !rotate,
+    });
+
+    console.log(angle);
+  };
+
   render() {
     return (
-      <Navbar color='light' light expand='sm'>
+      <Navbar color='light' light expand='sm' id='navbar'>
         <NavbarBrand id='brand' href='/'>
           PCMart
         </NavbarBrand>
@@ -36,20 +78,13 @@ class AppNavbar extends React.Component {
               <NavLink href='/'>HOME</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar className='dropdown'>
-              <DropdownToggle nav>
-                COMPONENTS{" "}
-                <svg
-                  width='1em'
-                  height='1em'
-                  viewBox='0 0 16 16'
-                  class='bi bi-chevron-down'
-                  fill='currentColor'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fill-rule='evenodd'
-                    d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'
-                  />
-                </svg>
+              <DropdownToggle
+                nav
+                onClick={(event) => this.rotate(event)}
+                onBlur={(event) => this.rotate(event)}
+                name='components'>
+                COMPONENTS{' '}
+                <AnimatedChevron angle={this.state.angle.components} />
               </DropdownToggle>
               <DropdownMenu nav>
                 <DropdownItem>Motherboard</DropdownItem>
@@ -62,20 +97,13 @@ class AppNavbar extends React.Component {
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar className='dropdown'>
-              <DropdownToggle nav>
-                ACCESSORIES{" "}
-                <svg
-                  width='1em'
-                  height='1em'
-                  viewBox='0 0 16 16'
-                  class='bi bi-chevron-down'
-                  fill='currentColor'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fill-rule='evenodd'
-                    d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'
-                  />
-                </svg>
+              <DropdownToggle
+                nav
+                onClick={(event) => this.rotate(event)}
+                onBlur={(event) => this.rotate(event)}
+                name='accessories'>
+                ACCESSORIES{' '}
+                <AnimatedChevron angle={this.state.angle.accessories} />
               </DropdownToggle>
               <DropdownMenu nav>
                 <DropdownItem>External HDD/SSD</DropdownItem>
@@ -86,20 +114,13 @@ class AppNavbar extends React.Component {
             </UncontrolledDropdown>
 
             <UncontrolledDropdown nav inNavbar className='dropdown'>
-              <DropdownToggle nav>
-                PERIPHERICALS{" "}
-                <svg
-                  width='1em'
-                  height='1em'
-                  viewBox='0 0 16 16'
-                  class='bi bi-chevron-down'
-                  fill='currentColor'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fill-rule='evenodd'
-                    d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'
-                  />
-                </svg>
+              <DropdownToggle
+                nav
+                onClick={(event) => this.rotate(event)}
+                onBlur={(event) => this.rotate(event)}
+                name='periphericals'>
+                PERIPHERICALS{' '}
+                <AnimatedChevron angle={this.state.angle.periphericals} />
               </DropdownToggle>
               <DropdownMenu nav>
                 <DropdownItem>Display Monitors</DropdownItem>

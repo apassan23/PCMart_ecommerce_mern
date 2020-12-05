@@ -1,5 +1,6 @@
 #root {
   font-family: 'Work Sans';
+  width: 100%;
 }
 
 #brand {
@@ -33,24 +34,16 @@
   border: none;
   background-color: white;
   color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 3%;
 }
 
 .slick-btn:hover {
   cursor: pointer;
-  background-color: #dddddd;
+  background-color: #fff;
   text-decoration: none;
   color: #000;
-}
-
-.slick-btn:active {
-  background-color: #bbbbbb;
-  border: none;
-  color: #000;
-}
-
-.slick-btn:focus {
-  border: none;
-  outline: none;
 }
 
 .info-container {
@@ -101,4 +94,26 @@
   color: #fff !important;
   border-radius: none !important;
   margin-top: 5rem;
+}
+
+.custom-btn {
+  background-color: #000;
+  color: #fff;
+  border-radius: 3%;
+  padding: 2%;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  transition: all 0.3s ease 0s;
+  border: 1.5px solid #000;
+}
+
+.custom-btn:hover {
+  outline: none;
+  text-decoration: none;
+  /* transform: translateY(-7px); */
+  color: #000;
+  background-color: #fff;
+  box-shadow: none;
+  border: 1.5px solid #000;
+  border-radius: none !important;
 }
