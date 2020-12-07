@@ -7,9 +7,10 @@ const AnimatedPrice = ({ toggle, price }) => {
   const style = useSpring({
     visibility: toggle ? 'visible' : 'hidden',
     transform: toggle ? 'translateY(0)' : 'translateY(10px)',
+    letterSpacing: '0.1rem',
   });
   return (
-    <animated.p style={style} className='text-muted text-uppercase'>
+    <animated.p style={style} className='text-muted'>
       From{' '}
       <NumberFormat
         value={price}
@@ -32,24 +33,24 @@ class Featured extends React.Component {
         src: './images/ca_h210i_w1_img_main-600x600.jpg',
         caption: 'H210i M-ATX',
         price: {
-          value: 12000,
+          value: 11999,
           visible: false,
         },
       },
       {
         src: '/images/h510-matte-black-red-image-main-600x600.jpg',
         caption: 'H510 ATX',
-        price: { value: 10000, visible: false },
+        price: { value: 9999, visible: false },
       },
       {
         src: './images/h710i-matte-white-image-main-600x600.jpg',
         caption: 'H710i E-ATX',
-        price: { value: 18000, visible: false },
+        price: { value: 17999, visible: false },
       },
       {
         src: './images/ca-h510e-b1-images-main-600x600.jpg',
         caption: 'H510e ATX',
-        price: { value: 14000, visible: false },
+        price: { value: 13999, visible: false },
       },
     ],
   };
@@ -73,7 +74,7 @@ class Featured extends React.Component {
     return (
       <div className='text-center mt-5' style={{ padding: '0 10% 0 10%' }}>
         <div className='title'>
-          <p className='text-uppercase'>{heading}</p>
+          <p className='text-uppercase lead'>{heading}</p>
           <h2 className='text-uppercase'>{brandTag}</h2>
         </div>
         <Row className='products mt-5'>

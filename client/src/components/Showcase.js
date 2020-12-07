@@ -16,7 +16,7 @@ class Showcase extends React.Component {
         category: 'Motherboards',
         headline: 'ASUS Z490 Series',
         desc:
-          'The ASUS Z490 series features innovative designs that unleash the power of the latest 10th Gen Intel® Core™ processors. With intelligent overclocking, revolutionary cooling, robust power solution, optimized memory and next-gen connectivity, these boards come equipped to help you get the most out of your next Intel Z490 build. Yet, each model has its own distinctive traits, designed with specific segments in mind. Which one suits you?',
+          'The ASUS Z490 series features innovative designs that unleash the power of the latest 10th Gen Intel® Core™ processors. With intelligent overclocking, revolutionary cooling, robust power solution, optimized memory and next-gen connectivity, these boards come equipped to help you get the most out of your next Intel Z490 build. Yet, each model has its own distinctive traits, designed with specific segments in mind.',
       },
       {
         src: './images/vengeance_rgb.jpg',
@@ -34,8 +34,6 @@ class Showcase extends React.Component {
       <div className='mt-5 container-fluid'>
         {items.map((item, index) => (
           <Row>
-            {console.log(index)}
-            {console.log(item.category)}
             <Col
               md='6'
               className='d-flex align-items-center'
