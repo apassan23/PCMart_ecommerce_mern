@@ -5,6 +5,7 @@ import AppNavbar from './components/AppNavbar';
 import Carousel from './components/Carousel';
 import Showcase from './components/Showcase';
 import AppCarousel from './components/AppCarousel';
+import AppFooter from './components/AppFooter';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Featured />
       <Showcase />
       <AppCarousel />
+      <AppFooter />
     </div>
   );
 }

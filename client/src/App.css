@@ -3,6 +3,10 @@
   width: 100%;
 }
 
+.big-font {
+  font-family: Quicksand, sans-serif;
+}
+
 #brand {
   font-size: xx-large;
 }
