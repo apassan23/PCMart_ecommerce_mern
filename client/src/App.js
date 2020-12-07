@@ -4,6 +4,7 @@ import Featured from './components/Featured';
 import AppNavbar from './components/AppNavbar';
 import Carousel from './components/Carousel';
 import Showcase from './components/Showcase';
+import AppCarousel from './components/AppCarousel';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Carousel />
       <Featured />
       <Showcase />
+      <AppCarousel />
     </div>
   );
 }

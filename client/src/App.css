@@ -13,12 +13,12 @@
 } */
 
 .slick-slide {
-  height: 70vh;
+  /* height: 70vh; */
   width: 100%;
 }
 .slick-slide > div > div {
   position: relative;
-  height: 70vh;
+  /* height: 70vh; */
 }
 
 .slick-slide img {
@@ -26,7 +26,6 @@
   width: 100%;
   position: absolute;
   object-fit: cover;
-  background-color: blue;
 }
 
 .slick-btn {
@@ -47,7 +46,7 @@
 }
 
 .info-container {
-  height: 100%;
+  height: auto;
   width: 100%;
   padding: 1%;
   position: absolute;
@@ -116,4 +115,48 @@
   box-shadow: none;
   border: 1.5px solid #000;
   border-radius: none !important;
+}
+
+#deal-container {
+  height: 20vh !important;
+}
+
+.container-slick div {
+  height: inherit;
+}
+
+.custom-btn-2 {
+  background-color: #ffa500;
+  color: #fff;
+  border-radius: 3%;
+  padding: 2%;
+  box-shadow: 0 0 4px 4px rgba(255, 165, 0, 0.15);
+  font-weight: bold;
+  transition: all 0.3s ease 0s;
+  border: 1.5px solid #ffa500;
+}
+
+.custom-btn-2:hover {
+  outline: none;
+  text-decoration: none;
+  /* transform: translateY(-7px); */
+  color: #ffa500;
+  background-color: #fff;
+  box-shadow: none;
+  border: 1.5px solid #ffa500;
+  border-radius: none !important;
+}
+
+.arrow {
+  outline: none;
+  text-decoration: none;
+  border: none;
+  background-color: white;
+  height: 2rem;
+  width: 2rem;
+}
+
+.arrow:active,
+.arrow:focus {
+  outline: none;
 }
