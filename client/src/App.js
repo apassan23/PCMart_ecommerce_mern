@@ -1,20 +1,22 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Featured from './components/Featured';
+import './TreeView.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
-import Carousel from './components/Carousel';
-import Showcase from './components/Showcase';
-import AppCarousel from './components/AppCarousel';
+import Home from './components/Home';
 import AppFooter from './components/AppFooter';
+import Motherboard from './components/Motherboard';
 
 function App() {
   return (
     <div className='App w-100'>
       <AppNavbar />
-      <Carousel />
-      <Featured />
-      <Showcase />
-      <AppCarousel />
+      <Router>
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/components/motherboard' exact component={Motherboard} />
+        </Switch>
+      </Router>
       <AppFooter />
     </div>
   );
