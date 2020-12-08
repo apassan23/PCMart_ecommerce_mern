@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { animated, useSpring } from 'react-spring';
 import NumberFormat from 'react-number-format';
 
