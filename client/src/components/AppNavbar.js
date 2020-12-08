@@ -15,6 +15,7 @@ import {
 import { useSpring, animated } from 'react-spring';
 
 const AnimatedChevron = ({ angle }) => {
+  // TODO: fix chevron icon rotation
   const style = useSpring({
     transform: `rotate(${angle}deg)`,
   });
@@ -138,8 +139,8 @@ class AppNavbar extends React.Component {
             <NavItem>
               <NavLink href='/'>
                 <svg
-                  width='1.5em'
-                  height='1.5em'
+                  width='1.25em'
+                  height='1.25em'
                   viewBox='0 0 16 16'
                   class='bi bi-handbag'
                   fill='#000'
@@ -155,8 +156,8 @@ class AppNavbar extends React.Component {
             <NavItem>
               <NavLink href='/'>
                 <svg
-                  width='1.5em'
-                  height='1.5em'
+                  width='1.25em'
+                  height='1.25em'
                   viewBox='0 0 16 16'
                   class='bi bi-heart'
                   fill='#000'
@@ -172,8 +173,8 @@ class AppNavbar extends React.Component {
             <NavItem>
               <NavLink href='/'>
                 <svg
-                  width='1.5em'
-                  height='1.5em'
+                  width='1.25em'
+                  height='1.25em'
                   viewBox='0 0 16 16'
                   class='bi bi-person'
                   fill='#000'
