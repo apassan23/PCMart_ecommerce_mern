@@ -21,8 +21,8 @@ const AnimatedChevron = ({ angle }) => {
   });
   return (
     <animated.svg
-      width='1em'
-      height='1em'
+      width='0.6em'
+      height='0.6em'
       viewBox='0 0 16 16'
       class='bi bi-chevron-down'
       fill='currentColor'
@@ -88,13 +88,27 @@ class AppNavbar extends React.Component {
                 <AnimatedChevron angle={this.state.angle.components} />
               </DropdownToggle>
               <DropdownMenu nav>
-                <DropdownItem>Motherboard</DropdownItem>
-                <DropdownItem>Processors</DropdownItem>
-                <DropdownItem>Memory</DropdownItem>
-                <DropdownItem>Graphic Cards</DropdownItem>
-                <DropdownItem>Power Supplies</DropdownItem>
-                <DropdownItem>Heat Sinks</DropdownItem>
-                <DropdownItem>Secondary Memory</DropdownItem>
+                <DropdownItem>
+                  <NavLink href='/components/motherboard'>Motherboard</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href='/components/processor'>Processors</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href='/components/memory'>Memory</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href='/components/graphics'>Graphic Cards</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href=''>Power Supplies</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href=''>Heat Sinks</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink href=''>Secondary Memory</NavLink>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar className='dropdown'>
@@ -107,10 +121,18 @@ class AppNavbar extends React.Component {
                 <AnimatedChevron angle={this.state.angle.accessories} />
               </DropdownToggle>
               <DropdownMenu nav>
-                <DropdownItem>External HDD/SSD</DropdownItem>
-                <DropdownItem>Drive Bays</DropdownItem>
-                <DropdownItem>Cooling Fans / Radiators</DropdownItem>
-                <DropdownItem>Cables</DropdownItem>
+                <DropdownItem>
+                  <NavLink>External HDD/SSD</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink>Drive Bays</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink>Cooling Fans / Radiators</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink>Cables</NavLink>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
 
@@ -124,9 +146,15 @@ class AppNavbar extends React.Component {
                 <AnimatedChevron angle={this.state.angle.periphericals} />
               </DropdownToggle>
               <DropdownMenu nav>
-                <DropdownItem>Display Monitors</DropdownItem>
-                <DropdownItem>Mouse</DropdownItem>
-                <DropdownItem>Keyboards</DropdownItem>
+                <DropdownItem>
+                  <NavLink>Display Monitors</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink>Mouse</NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink>Keyboards</NavLink>
+                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
 

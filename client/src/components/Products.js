@@ -47,21 +47,25 @@ class Products extends React.Component {
                 <p className='text-warning'>Reset</p>
               </div>
               <hr />
-              {Object.keys(filterOptions).map((key) => (
-                <TreeView
-                  nodeLabel={key}
-                  defaultCollapsed
-                  itemClassName='text-capitalize'>
-                  {filterOptions[key].map((child) => (
-                    <div className='d-flex justify-content-between'>
-                      <label htmlFor={child} className='text-capitalize'>
-                        {child}
-                      </label>
-                      <Input type='checkbox' className='' name={child} />
-                    </div>
-                  ))}
-                </TreeView>
-              ))}
+              <div className='mt-4'>
+                {Object.keys(filterOptions).map((key) => (
+                  <TreeView
+                    nodeLabel={key}
+                    defaultCollapsed
+                    itemClassName='text-capitalize mb-3'>
+                    {filterOptions[key].map((child) => (
+                      <div className='d-flex justify-content-between'>
+                        <label
+                          htmlFor={child}
+                          className='text-capitalize text-muted'>
+                          {child}
+                        </label>
+                        <Input type='checkbox' className='' name={child} />
+                      </div>
+                    ))}
+                  </TreeView>
+                ))}
+              </div>
             </Col>
             <Col md='9'>
               <Row className='mt-4'>
@@ -79,7 +83,11 @@ class Products extends React.Component {
                       thousandSeparator={true}
                       thousandsGroupStyle={'lakh'}
                       prefix={'₹'}
-                      renderText={(value) => <p className='mt-3'>{value}</p>}
+                      renderText={(value) => (
+                        <strong className='mt-3' style={{ fontSize: '1.2rem' }}>
+                          {value}
+                        </strong>
+                      )}
                     />
                   </Col>
                 ))}

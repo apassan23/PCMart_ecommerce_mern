@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class Showcase extends React.Component {
   state = {
@@ -10,6 +11,7 @@ class Showcase extends React.Component {
         headline: "RTX. It's On.",
         desc:
           'Experience today’s biggest blockbusters like never before with the visual fidelity of real-time ray tracing and the ultimate performance of AI-powered DLSS. RTX. It’s On.',
+        link: '/components/graphics',
       },
       {
         src: './images/asus(1).jpg',
@@ -17,6 +19,7 @@ class Showcase extends React.Component {
         headline: 'ASUS Z490 Series',
         desc:
           'The ASUS Z490 series features innovative designs that unleash the power of the latest 10th Gen Intel® Core™ processors. With intelligent overclocking, revolutionary cooling, robust power solution, optimized memory and next-gen connectivity, these boards come equipped to help you get the most out of your next Intel Z490 build. Yet, each model has its own distinctive traits, designed with specific segments in mind.',
+        link: '/components/motherboard',
       },
       {
         src: './images/vengeance_rgb.jpg',
@@ -24,6 +27,7 @@ class Showcase extends React.Component {
         headline: 'Corsair Vengeance RGB',
         desc:
           'CORSAIR VENGEANCE RGB Series DDR4 overclocked memory lights up your PC with mesmerizing dynamic multi-zone RGB lighting, while delivering the best in DDR4 performance.',
+        link: '/components/memory',
       },
     ],
   };
@@ -50,9 +54,9 @@ class Showcase extends React.Component {
                 <h4 className='text-muted lead'>{item.category}</h4>
                 <h2 className='text-uppercase'>{item.headline}</h2>
                 <p className='text-wrap mt-4 mb-5'>{item.desc}</p>
-                <a href='' className='custom-btn'>
+                <Link to={item.link} className='custom-btn'>
                   Shop Now
-                </a>
+                </Link>
               </div>
             </Col>
             <Col
