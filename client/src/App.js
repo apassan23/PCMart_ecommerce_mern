@@ -10,6 +10,7 @@ import Motherboard from './components/Motherboard';
 import Processor from './components/Processor';
 import Memory from './components/Memory';
 import Graphics from './components/Graphics';
+import PowerSupply from './components/PowerSupply';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path='/components/processor' exact component={Processor} />
             <Route path='/components/memory' exact component={Memory} />
             <Route path='/components/graphics' exact component={Graphics} />
+            <Route path='/components/psu' exact component={PowerSupply} />
           </Switch>
           <AppFooter />
         </div>

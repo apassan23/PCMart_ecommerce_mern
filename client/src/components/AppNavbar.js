@@ -101,7 +101,7 @@ class AppNavbar extends React.Component {
                   <NavLink href='/components/graphics'>Graphic Cards</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href=''>Power Supplies</NavLink>
+                  <NavLink href='/components/psu'>Power Supplies</NavLink>
                 </DropdownItem>
                 <DropdownItem>
                   <NavLink href=''>Heat Sinks</NavLink>
