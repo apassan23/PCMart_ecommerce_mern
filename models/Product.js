@@ -21,13 +21,15 @@ const Product = new mongoose.Schema({
     type: Array,
     required: true,
   },
-  original_cost: {
+  discount: {
     type: Number,
     required: false,
+    default: Math.round(Math.random() * 10000),
   },
   rating: {
     type: Number,
     required: false,
+    default: Math.round((4 + Math.random()) * 10) / 10,
   },
   product_type: {
     type: String,

@@ -6,9 +6,16 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:type', (req, res) => {
+  // console.log('endpoint being hit');
   Product.find({ product_type: req.params.type }).then((items) =>
     res.json(items)
   );
+});
+
+router.get('/product/:id', (req, res) => {
+  Product.findById(req.params.id)
+    .then((item) => res.status(200).json(item))
+    .catch((err) => res.status(404).json({ err: err.response }));
 });
 
 router.post('/', (req, res) => {

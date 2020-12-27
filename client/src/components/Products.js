@@ -1,7 +1,10 @@
 import React from 'react';
 import { Row, Col, Container, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import TreeView from 'react-treeview';
+import { connect } from 'react-redux';
+import { setProduct } from '../actions/productActions';
 
 class Products extends React.Component {
   state = {
@@ -11,14 +14,21 @@ class Products extends React.Component {
   };
 
   componentDidMount() {
+    // console.log(this.props.data);
     this.setState({
       data: this.props.data,
       title: this.props.title,
       filterOptions: this.props.filterOptions,
     });
   }
+
+  handleClick = (product) => {
+    this.props.setProduct(product);
+  };
+
   render() {
     const { data, title, filterOptions } = this.state;
+    // console.log(data);
     return (
       <div>
         {title ? (
@@ -52,9 +62,12 @@ class Products extends React.Component {
                   <TreeView
                     nodeLabel={key}
                     defaultCollapsed
-                    itemClassName='text-capitalize mb-3'>
+                    itemClassName='text-capitalize mb-3'
+                    key={key}>
                     {filterOptions[key].map((child) => (
-                      <div className='d-flex justify-content-between'>
+                      <div
+                        className='d-flex justify-content-between'
+                        key={child}>
                         <label
                           htmlFor={child}
                           className='text-capitalize text-muted'>
@@ -71,24 +84,31 @@ class Products extends React.Component {
               <Row className='mt-4'>
                 {data.map((item) => (
                   <Col md='4' key={item.id} style={{ height: '40vh' }}>
-                    <img
-                      src={item.img}
-                      alt=''
-                      style={{ height: '75%', width: '100%' }}
-                    />
-                    <h4 className='text-wrap lead'>{item.title}</h4>
-                    <NumberFormat
-                      value={item.cost}
-                      displayType={'text'}
-                      thousandSeparator={true}
-                      thousandsGroupStyle={'lakh'}
-                      prefix={'₹'}
-                      renderText={(value) => (
-                        <strong className='mt-3' style={{ fontSize: '1.2rem' }}>
-                          {value}
-                        </strong>
-                      )}
-                    />
+                    <Link
+                      className='product-link'
+                      to={`/product/${item._id}`}
+                      onClick={(event) => this.handleClick(item)}>
+                      <img
+                        src={item.img[0]}
+                        alt=''
+                        style={{ height: '75%', width: '100%' }}
+                      />
+                      <h4 className='text-wrap lead'>{item.title}</h4>
+                      <NumberFormat
+                        value={item.cost}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        thousandsGroupStyle={'lakh'}
+                        prefix={'₹'}
+                        renderText={(value) => (
+                          <strong
+                            className='mt-3'
+                            style={{ fontSize: '1.2rem' }}>
+                            {value}
+                          </strong>
+                        )}
+                      />
+                    </Link>
                   </Col>
                 ))}
               </Row>
@@ -100,4 +120,4 @@ class Products extends React.Component {
   }
 }
 
-export default Products;
+export default connect(null, { setProduct })(Products);
