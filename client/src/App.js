@@ -5,35 +5,33 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import AppNavbar from './components/AppNavbar';
 import Home from './components/Home';
+import store from './store';
+import { Provider } from 'react-redux';
 import AppFooter from './components/AppFooter';
-import Motherboard from './components/Motherboard';
-import Processor from './components/Processor';
-import Memory from './components/Memory';
-import Graphics from './components/Graphics';
-import PowerSupply from './components/PowerSupply';
+import PageGenerator from './components/PageGenerator';
+import Product from './components/Product';
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop>
-        <div className='App w-100'>
-          <AppNavbar />
-          <Switch>
-            <Route path='/' exact component={Home} />
-            <Route
-              path='/components/motherboard'
-              exact
-              component={Motherboard}
-            />
-            <Route path='/components/processor' exact component={Processor} />
-            <Route path='/components/memory' exact component={Memory} />
-            <Route path='/components/graphics' exact component={Graphics} />
-            <Route path='/components/psu' exact component={PowerSupply} />
-          </Switch>
-          <AppFooter />
-        </div>
-      </ScrollToTop>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <ScrollToTop>
+          <div className='App w-100'>
+            <AppNavbar />
+            <Switch>
+              <Route path='/' exact component={Home} />
+              <Route
+                path='/components/:product_type'
+                exact
+                component={PageGenerator}
+              />
+              <Route path='/product/:id' exact component={Product} />
+            </Switch>
+            <AppFooter />
+          </div>
+        </ScrollToTop>
+      </Router>
+    </Provider>
   );
 }
 
