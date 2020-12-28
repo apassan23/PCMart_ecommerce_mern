@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CustomSpinner from './CustomSpinner';
 import { getProduct } from '../actions/productActions';
 import PropsTypes from 'prop-types';
@@ -18,60 +19,73 @@ class Product extends React.Component {
 
   componentDidMount() {
     const { product } = this.props;
-    if (product && Object.keys(product).length !== 0)
+    if (product && Object.keys(product).length !== 0) {
+      const { details } = this.props.product;
+      this.props.product.details = this.unmangleData(details);
       this.setState({ data: product });
-    else this.props.getProduct(this.props.match.params.id);
+    } else this.props.getProduct(this.props.match.params.id);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.product !== this.props.product) {
+      const { details } = this.props.product;
+      this.props.product.details = this.unmangleData(details);
+
       this.setState({ data: this.props.product });
     }
   }
+
+  unmangleData = (details) => {
+    Object.keys(details).forEach((key) => {
+      let unmangledkey = key.replace('_', ' ');
+      details[unmangledkey] = details[key];
+      if (unmangledkey !== key) delete details[key];
+    });
+
+    return details;
+  };
 
   render() {
     const { data } = this.state;
     let deliveryDate = new Date();
     deliveryDate.setDate(deliveryDate.getDate() + 2);
     let content = (
-      <Container
-        style={{ height: '70vh' }}
-        className='d-flex justify-content-center align-items-center'>
+      <Container style={{ height: '100vh' }} className=''>
         {Object.keys(data).length !== 0 ? (
-          <Row className='mt-5'>
-            <Col
-              md='6'
-              className='d-flex justify-content-center align-items-center'>
-              <img
-                src={data.img[0]}
-                alt=''
-                style={{ height: '90%', width: '70%' }}
-              />
-            </Col>
-            <Col md='6' className='mt-5'>
-              <h1>{data.title}</h1>
-              <p>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='16'
-                  height='16'
-                  fill='#ffa500'
-                  className='bi bi-star-fill mr-2'
-                  viewBox='0 0 16 16'
-                  style={{ transform: 'translateY(-0.15rem)' }}>
-                  <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z' />
-                </svg>
-                <big>{data.rating}</big>
-              </p>
-              <div className='d-flex mt-4'>
-                <NumberFormat
-                  value={data.cost}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  thousandsGroupStyle={'lakh'}
-                  prefix={'₹'}
-                  renderText={(value) => <h3>{value}</h3>}
+          <React.Fragment>
+            <h4 className='mt-5 text-capitalize'>
+              <Link
+                to={`/components/${data.product_type}`}
+                className='text-muted'>
+                {data.product_type.replace('_', ' ')}
+              </Link>
+              {` > ${data.title}`}
+            </h4>
+            <Row className='my-5'>
+              <Col
+                md='6'
+                className='d-flex justify-content-center align-items-center'>
+                <img
+                  src={data.img[0]}
+                  alt=''
+                  style={{ height: '90%', width: '70%' }}
                 />
+              </Col>
+              <Col md='6' className='mt-5'>
+                <h1>{data.title}</h1>
+                <p>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='16'
+                    height='16'
+                    fill='#ffa500'
+                    className='bi bi-star-fill mr-2'
+                    viewBox='0 0 16 16'
+                    style={{ transform: 'translateY(-0.15rem)' }}>
+                    <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z' />
+                  </svg>
+                  <big>{data.rating}</big>
+                </p>
 
                 <NumberFormat
                   value={data.cost + data.discount}
@@ -80,46 +94,97 @@ class Product extends React.Component {
                   thousandsGroupStyle={'lakh'}
                   prefix={'₹'}
                   renderText={(value) => (
-                    <p
-                      className='mx-4 text-muted'
-                      style={{
-                        textDecoration: 'line-through',
-                      }}>
-                      {value}
-                    </p>
+                    <big>
+                      M.R.P.
+                      <span
+                        className='text-muted ml-2'
+                        style={{
+                          textDecoration: 'line-through',
+                        }}>
+                        {value}
+                      </span>
+                    </big>
                   )}
                 />
-                <span className='text-success'>
-                  {Math.round(
-                    (data.discount / (data.cost + data.discount)) * 100
+
+                <NumberFormat
+                  value={data.cost}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  thousandsGroupStyle={'lakh'}
+                  prefix={'₹'}
+                  renderText={(value) => <h2 className='mt-3'>{value}</h2>}
+                />
+
+                <NumberFormat
+                  value={data.discount}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  thousandsGroupStyle={'lakh'}
+                  prefix={'₹'}
+                  renderText={(value) => (
+                    <big>
+                      You Save :{' '}
+                      <span className='text-success'>{`${value} (${Math.round(
+                        (data.discount / (data.cost + data.discount)) * 100
+                      )}%)`}</span>
+                    </big>
                   )}
-                  % off
-                </span>
-              </div>
+                />
+                <p
+                  className={
+                    (data.availability ? 'text-success' : 'text-danger') +
+                    ' mt-1'
+                  }>
+                  {data.availability ? 'In Stock' : 'Out of Stock'}
+                </p>
 
-              <p
-                className={
-                  (data.availability ? 'text-success' : 'text-danger') + ' mt-1'
-                }>
-                {data.availability ? 'In Stock' : 'Out of Stock'}
-              </p>
+                <p>
+                  <span
+                    className='text-uppercase'
+                    style={{ fontWeight: 'bold' }}>
+                    Free
+                  </span>{' '}
+                  Delivery
+                </p>
 
-              <p>
-                Delivery by :{' '}
-                <span style={{ fontWeight: 'bold' }}>
-                  {deliveryDate.toLocaleString('en-in', {
-                    day: 'numeric',
-                    month: 'short',
-                  })}
-                </span>
-              </p>
+                <p>
+                  Delivery by :{' '}
+                  <span style={{ fontWeight: 'bold' }}>
+                    {deliveryDate.toLocaleString('en-in', {
+                      day: 'numeric',
+                      month: 'short',
+                    })}
+                  </span>
+                </p>
 
-              <div className='d-flex mt-3'>
-                <button className='custom-btn w-50 mr-4'>Add to Cart</button>
-                <button className='custom-btn-2 w-50'>Buy Now</button>
-              </div>
-            </Col>
-          </Row>
+                <div className='d-flex mt-5'>
+                  <button className='custom-btn w-50 mr-4'>Add to Cart</button>
+                  <button className='custom-btn-2 w-50'>Buy Now</button>
+                </div>
+              </Col>
+            </Row>
+            <hr />
+            <h2 className='text-center mt-5'>Product Specifications</h2>
+
+            <Row className='mt-5'>
+              {Object.keys(data.details).map((key) => (
+                <Col
+                  md='12'
+                  xs='12'
+                  className='mt-3 d-flex justify-content-center'>
+                  <big className='d-flex justify-content-between w-75'>
+                    <span
+                      className='text-capitalize'
+                      style={{ fontWeight: 'bold' }}>
+                      {key}
+                    </span>
+                    <span className=''>{data.details[key]}</span>
+                  </big>
+                </Col>
+              ))}
+            </Row>
+          </React.Fragment>
         ) : null}
       </Container>
     );
