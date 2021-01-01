@@ -18,5 +18,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use('/api/products', require('./routes/api/products'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 app.listen(PORT, () => console.log(`> Server started at ${PORT}`));
