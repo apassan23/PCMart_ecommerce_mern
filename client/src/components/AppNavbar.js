@@ -13,6 +13,9 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { useSpring, animated } from 'react-spring';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../actions/authActions';
 
 const AnimatedChevron = ({ angle }) => {
   // TODO: fix chevron icon rotation
@@ -47,6 +50,11 @@ class AppNavbar extends React.Component {
     },
   };
 
+  static propTypes = {
+    user: PropTypes.object,
+    isAuthenticated: PropTypes.bool.isRequired,
+  };
+
   toggle = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -63,7 +71,12 @@ class AppNavbar extends React.Component {
       rotate: !rotate,
     });
 
-    console.log(angle);
+    // console.log(angle);
+  };
+
+  logout = (event) => {
+    this.props.logout();
+    window.location.reload();
   };
 
   render() {
@@ -168,6 +181,27 @@ class AppNavbar extends React.Component {
           </Nav>
 
           <Nav className='ml-auto' nav>
+            {this.props.isAuthenticated ? (
+              <UncontrolledDropdown nav inNavbar className='dropdown mr-3'>
+                <DropdownToggle nav>
+                  <div style={{ color: 'black', fontSize: '1.1rem' }}>
+                    Welcome {this.props.user.username}
+                  </div>
+                </DropdownToggle>
+                <DropdownMenu nav>
+                  <DropdownItem onClick={(event) => this.logout(event)}>
+                    Logout
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+            ) : (
+              <NavItem>
+                <NavLink href='/login' className='custom-btn mr-3'>
+                  Login
+                </NavLink>
+              </NavItem>
+            )}
+
             <NavItem>
               <NavLink href='/'>
                 <svg
@@ -201,23 +235,6 @@ class AppNavbar extends React.Component {
                 </svg>
               </NavLink>
             </NavItem>
-
-            <NavItem>
-              <NavLink href='/'>
-                <svg
-                  width='1.25em'
-                  height='1.25em'
-                  viewBox='0 0 16 16'
-                  className='bi bi-person'
-                  fill='#000'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fillRule='evenodd'
-                    d='M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z'
-                  />
-                </svg>
-              </NavLink>
-            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
@@ -225,4 +242,9 @@ class AppNavbar extends React.Component {
   }
 }
 
-export default AppNavbar;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { logout })(AppNavbar);
