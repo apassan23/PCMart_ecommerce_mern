@@ -3,14 +3,13 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
+const auth = require('../../middleware/auth');
 
 router.post('/', (req, res) => {
   const { email, username, password } = req.body;
 
-  if ((!email && !username) || !password)
-    return res
-      .status(400)
-      .json({ message: 'Email or Password must be provided' });
+  if (!email || !password)
+    return res.status(400).json({ message: 'Email or Password is missing!' });
 
   let filter = {};
   if (email) filter = { email };
@@ -43,6 +42,12 @@ router.post('/', (req, res) => {
       });
     })
     .catch((err) => console.log(err));
+});
+
+router.get('/user', auth, (req, res) => {
+  User.findById(req.user.id)
+    .select('-password')
+    .then((user) => res.status(200).json(user));
 });
 
 module.exports = router;
