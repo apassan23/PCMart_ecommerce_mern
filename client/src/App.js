@@ -9,6 +9,7 @@ import AppFooter from './components/AppFooter';
 import PageGenerator from './components/PageGenerator';
 import Product from './components/Product';
 import Login from './components/Login';
+import Cart from './components/Cart';
 import { loadUser } from './actions/authActions';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,6 +36,7 @@ class App extends React.Component {
                 />
                 <Route path='/product/:id' exact component={Product} />
                 <Route path='/login' exact component={Login} />
+                <Route path='/cart' exact component={Cart} />
               </Switch>
               <AppFooter />
             </div>

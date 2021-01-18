@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CustomSpinner from './CustomSpinner';
 import { getProduct } from '../actions/productActions';
+import { addItem } from '../actions/cartActions';
 import PropsTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
 import NumberFormat from 'react-number-format';
@@ -15,6 +16,8 @@ class Product extends React.Component {
   static propTypes = {
     product: PropsTypes.object,
     loading: PropsTypes.bool.isRequired,
+    getProduct: PropsTypes.func.isRequired,
+    addItem: PropsTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -43,6 +46,10 @@ class Product extends React.Component {
     });
 
     return details;
+  };
+
+  addToCart = (event, product) => {
+    this.props.addItem({ ...product, qty: 1 });
   };
 
   render() {
@@ -159,7 +166,11 @@ class Product extends React.Component {
                 </p>
 
                 <div className='d-flex mt-5'>
-                  <button className='custom-btn w-50 mr-4'>Add to Cart</button>
+                  <button
+                    className='custom-btn w-50 mr-4'
+                    onClick={(event) => this.addToCart(event, data)}>
+                    Add to Cart
+                  </button>
                   <button className='custom-btn-2 w-50'>Buy Now</button>
                 </div>
               </Col>
@@ -202,4 +213,4 @@ const mapStateToProps = (state) => ({
   loading: state.product.loading,
 });
 
-export default connect(mapStateToProps, { getProduct })(Product);
+export default connect(mapStateToProps, { getProduct, addItem })(Product);

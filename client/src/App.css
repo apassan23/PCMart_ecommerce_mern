@@ -221,3 +221,20 @@
 .login-btn:disabled:hover {
   color: #fff;
 }
+
+.cart-btn {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.cart-btn:focus {
+  outline: none;
+}
+
+.clear-btn {
+  background-color: transparent;
+  border: none;
+}
+.clear-btn:focus {
+  outline: none;
+}

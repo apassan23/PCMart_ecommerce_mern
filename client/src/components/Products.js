@@ -7,27 +7,12 @@ import { connect } from 'react-redux';
 import { setProduct } from '../actions/productActions';
 
 class Products extends React.Component {
-  state = {
-    data: [],
-    title: '',
-    filterOptions: {},
-  };
-
-  componentDidMount() {
-    // console.log(this.props.data);
-    this.setState({
-      data: this.props.data,
-      title: this.props.title,
-      filterOptions: this.props.filterOptions,
-    });
-  }
-
   handleClick = (product) => {
     this.props.setProduct(product);
   };
 
   render() {
-    const { data, title, filterOptions } = this.state;
+    const { data, title, filterOptions } = this.props;
     // console.log(data);
     return (
       <div>
