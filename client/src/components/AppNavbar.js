@@ -16,6 +16,7 @@ import { useSpring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../actions/authActions';
+import { clear } from '../actions/cartActions';
 
 const AnimatedChevron = ({ angle }) => {
   // TODO: fix chevron icon rotation
@@ -76,6 +77,7 @@ class AppNavbar extends React.Component {
 
   logout = (event) => {
     this.props.logout();
+    this.props.clear();
     window.location.reload();
   };
 
@@ -203,7 +205,7 @@ class AppNavbar extends React.Component {
             )}
 
             <NavItem>
-              <NavLink href='/'>
+              <NavLink href='/cart'>
                 <svg
                   width='1.25em'
                   height='1.25em'
@@ -247,4 +249,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { logout })(AppNavbar);
+export default connect(mapStateToProps, { logout, clear })(AppNavbar);
