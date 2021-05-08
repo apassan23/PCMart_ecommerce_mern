@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
   User.findOne(filter)
     .then((user) => {
       if (!user)
-        return res.status(404).json({ message: 'User does not exists' });
+        return res.status(404).json({ message: 'User does not exists!' });
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) throw err;
         if (isMatch)
@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
               });
             }
           );
-        else return res.status(400).json({ message: 'Wrong Credentials' });
+        else return res.status(400).json({ message: 'Wrong Credentials!' });
       });
     })
     .catch((err) => console.log(err));
