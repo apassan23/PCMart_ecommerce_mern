@@ -11,7 +11,7 @@ class Showcase extends React.Component {
         headline: "RTX. It's On.",
         desc:
           'Experience today’s biggest blockbusters like never before with the visual fidelity of real-time ray tracing and the ultimate performance of AI-powered DLSS. RTX. It’s On.',
-        link: '/components/graphics',
+        link: '/components/graphic_card',
       },
       {
         src: './images/asus(1).jpg',

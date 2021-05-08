@@ -30,6 +30,9 @@ class Cart extends React.Component {
 
   render() {
     const { products, totalItems } = this.props;
+    const circleStyle = {
+      fontSize: '1.5rem',
+    };
     return (
       <Container className='' style={{ height: '100vh' }}>
         <h1 className='display-4 text-center mt-5 text-uppercase'>Cart</h1>
@@ -53,15 +56,10 @@ class Cart extends React.Component {
                       <button
                         className='cart-btn'
                         onClick={(event) => this.decreaseQty(product)}>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          width='1.5rem'
-                          height='1.5rem'
-                          fill='currentColor'
+                        <i
                           className='bi bi-dash-circle-fill mr-3'
-                          viewBox='0 0 16 16'>
-                          <path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z' />
-                        </svg>
+                          style={circleStyle}
+                        />
                       </button>
                       <p style={{ transform: 'translateY(0.4rem)' }}>
                         {product.qty}
@@ -69,15 +67,10 @@ class Cart extends React.Component {
                       <button
                         className='cart-btn'
                         onClick={(event) => this.addQty(product)}>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          width='1.5rem'
-                          height='1.5rem'
-                          fill='currentColor'
+                        <i
                           className='bi bi-plus-circle-fill ml-3'
-                          viewBox='0 0 16 16'>
-                          <path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z' />
-                        </svg>
+                          style={circleStyle}
+                        />
                       </button>
                     </big>
                   </Col>

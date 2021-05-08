@@ -9,23 +9,27 @@ import {
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Container, Row, Col } from 'reactstrap';
 import NumberFormat from 'react-number-format';
+import { addItem } from '../actions/cartActions';
+import { connect } from 'react-redux';
+import PropTypes, { func } from 'prop-types';
 
 class AppCarousel extends React.Component {
   state = {
     items: [
       {
-        src: './images/h410m-pro-vh-image-main-600x600.jpg',
-        name: 'MSI H410M Pro-VH Motherboard',
+        img: ['./images/h410m-pro-vh-image-main-600x600.jpg'],
+        title: 'MSI H410M Pro-VH Motherboard',
         original: 6789,
         discounted: 5599,
         brand: 'MSI',
         rating: '4.4',
         reviews: 433,
         availability: true,
+        product_type: 'motherboard',
       },
       {
-        src: './images/cmt32gx4m2c3000c15-images-02-600x600.jpg',
-        name:
+        img: ['./images/cmt32gx4m2c3000c15-images-02-600x600.jpg'],
+        title:
           'Corsair CMT32GX4M2C3000C15 Desktop Ram DOMINATOR PLATINUM RGB Series 32GB (16GBx2) DDR4 3000MHz',
         original: 19340,
         discounted: 17559,
@@ -33,22 +37,31 @@ class AppCarousel extends React.Component {
         rating: 4.6,
         availability: false,
         reviews: 19,
+        product_type: 'memory',
       },
       {
-        src: './images/zt-t20810a-10p-image-main-600x600.jpg',
-        name: 'Zotac RTX 2080 TI Blower 11GB',
+        img: ['./images/zt-t20810a-10p-image-main-600x600.jpg'],
+        title: 'Zotac RTX 2080 TI Blower 11GB',
         original: 103950,
         discounted: 94999,
         brand: 'Zotac',
         rating: 4.2,
         availability: true,
         reviews: 562,
+        product_type: 'graphic_card',
       },
     ],
   };
 
+  static propTypes = {
+    addItem: PropTypes.func.isRequired,
+  };
+
   render() {
     const { items } = this.state;
+    const arrowStyle = {
+      fontSize: '1.5rem',
+    };
     return (
       <Container className='mt-5'>
         <h2 className='text-center'>Today's Deals</h2>
@@ -65,7 +78,7 @@ class AppCarousel extends React.Component {
                     md='6'
                     className='d-flex justify-content-end align-items-center'>
                     <img
-                      src={item.src}
+                      src={item.img[0]}
                       alt=''
                       style={{ height: '90%', width: '90%' }}
                     />
@@ -74,18 +87,12 @@ class AppCarousel extends React.Component {
                     md='6'
                     className='d-flex justify-content-start align-items-center'>
                     <div className='h-auto'>
-                      <h2>{item.name}</h2>
+                      <h2>{item.title}</h2>
                       <big>
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          width='16'
-                          height='16'
-                          fill='#ffa500'
+                        <i
                           className='bi bi-star-fill mr-2'
-                          viewBox='0 0 16 16'
-                          style={{ transform: 'translateY(-0.15rem)' }}>
-                          <path d='M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z' />
-                        </svg>
+                          style={{ color: '#ffa500', fontSize: '1rem' }}
+                        />
                         {item.rating}
                       </big>
                       <small className='ml-2'>{item.reviews} reviews</small>
@@ -130,7 +137,13 @@ class AppCarousel extends React.Component {
                         {item.availability ? 'In Stock' : 'Out of Stock'}
                       </p>
                       <div className='d-flex mt-4'>
-                        <button type='button' className='custom-btn w-50'>
+                        <button
+                          type='button'
+                          className='custom-btn w-50'
+                          onClick={(event) => {
+                            item.cost = item.discounted;
+                            this.props.addItem({ ...item, qty: 1 });
+                          }}>
                           Add to Cart
                         </button>
                         <button
@@ -147,32 +160,10 @@ class AppCarousel extends React.Component {
           </Slider>
           <div className='d-flex justify-content-center'>
             <ButtonBack className='arrow mr-1'>
-              <svg
-                width='1.5em'
-                height='1.5em'
-                viewBox='0 0 16 16'
-                class='bi bi-chevron-left'
-                fill='currentColor'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  fill-rule='evenodd'
-                  d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'
-                />
-              </svg>
+              <i class='bi bi-chevron-left' style={arrowStyle} />
             </ButtonBack>
             <ButtonNext className='arrow'>
-              <svg
-                width='1.5em'
-                height='1.5em'
-                viewBox='0 0 16 16'
-                class='bi bi-chevron-right'
-                fill='currentColor'
-                xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  fill-rule='evenodd'
-                  d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'
-                />
-              </svg>
+              <i class='bi bi-chevron-right' style={arrowStyle} />
             </ButtonNext>
           </div>
         </CarouselProvider>
@@ -181,4 +172,4 @@ class AppCarousel extends React.Component {
   }
 }
 
-export default AppCarousel;
+export default connect(null, { addItem })(AppCarousel);

@@ -10,9 +10,11 @@ import PageGenerator from './components/PageGenerator';
 import Product from './components/Product';
 import Login from './components/Login';
 import Cart from './components/Cart';
+import SignUp from './components/SignUp';
 import { loadUser } from './actions/authActions';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './TreeView.css';
 
 class App extends React.Component {
@@ -36,6 +38,7 @@ class App extends React.Component {
                 />
                 <Route path='/product/:id' exact component={Product} />
                 <Route path='/login' exact component={Login} />
+                <Route path='/signup' exact component={SignUp} />
                 <Route path='/cart' exact component={Cart} />
               </Switch>
               <AppFooter />

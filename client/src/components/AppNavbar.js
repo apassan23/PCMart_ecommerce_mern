@@ -54,6 +54,7 @@ class AppNavbar extends React.Component {
   static propTypes = {
     user: PropTypes.object,
     isAuthenticated: PropTypes.bool.isRequired,
+    itemsInCart: PropTypes.any.isRequired,
   };
 
   toggle = () => {
@@ -82,6 +83,11 @@ class AppNavbar extends React.Component {
   };
 
   render() {
+    const svgStyle = {
+      fontSize: '1.25rem',
+      color: '#000',
+    };
+
     return (
       <Navbar color='light' light expand='sm' id='navbar'>
         <NavbarBrand id='brand' href='/'>
@@ -186,7 +192,7 @@ class AppNavbar extends React.Component {
             {this.props.isAuthenticated ? (
               <UncontrolledDropdown nav inNavbar className='dropdown mr-3'>
                 <DropdownToggle nav>
-                  <div style={{ color: 'black', fontSize: '1.1rem' }}>
+                  <div style={{ color: 'black', fontSize: '1.15rem' }}>
                     Welcome {this.props.user.username}
                   </div>
                 </DropdownToggle>
@@ -206,35 +212,22 @@ class AppNavbar extends React.Component {
 
             <NavItem>
               <NavLink href='/cart'>
-                <svg
-                  width='1.25em'
-                  height='1.25em'
-                  viewBox='0 0 16 16'
-                  className='bi bi-handbag'
-                  fill='#000'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fillRule='evenodd'
-                    d='M8 1a2 2 0 0 0-2 2v2h4V3a2 2 0 0 0-2-2zm3 4V3a3 3 0 1 0-6 0v2H3.361a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.356a2.5 2.5 0 0 0 2.472-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 0 0 1 0V6h4z'
-                  />
-                </svg>
+                <i
+                  className={`bi bi-handbag${
+                    this.props.itemsInCart > 0 ? '-fill' : ''
+                  }`}
+                  style={{
+                    ...svgStyle,
+                    color:
+                      this.props.itemsInCart > 0 ? 'goldenrod' : svgStyle.color,
+                  }}
+                />
               </NavLink>
             </NavItem>
 
             <NavItem>
               <NavLink href='/'>
-                <svg
-                  width='1.25em'
-                  height='1.25em'
-                  viewBox='0 0 16 16'
-                  className='bi bi-heart'
-                  fill='#000'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    fillRule='evenodd'
-                    d='M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z'
-                  />
-                </svg>
+                <i className='bi bi-heart' style={svgStyle} />
               </NavLink>
             </NavItem>
           </Nav>
@@ -247,6 +240,7 @@ class AppNavbar extends React.Component {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
+  itemsInCart: state.cart.totalItems,
 });
 
 export default connect(mapStateToProps, { logout, clear })(AppNavbar);

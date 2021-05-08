@@ -50,7 +50,9 @@ class PageGenerator extends React.Component {
           <Products
             data={products}
             filterOptions={this.state.filterOptions}
-            title='Processors'
+            title={this.props.match.params.product_type
+              .replace('_', ' ')
+              .toUpperCase()}
           />
         )}
       </React.Fragment>
