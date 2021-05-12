@@ -11,11 +11,14 @@ import Product from './components/Product';
 import Login from './components/Login';
 import Cart from './components/Cart';
 import SignUp from './components/SignUp';
+import WishList from './components/WishList';
 import { loadUser } from './actions/authActions';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './TreeView.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 class App extends React.Component {
   componentDidMount() {
@@ -29,6 +32,7 @@ class App extends React.Component {
           <ScrollToTop>
             <div className='App w-100'>
               <AppNavbar />
+              <ToastContainer bodyClassName='toast-body' limit={2} />
               <Switch>
                 <Route path='/' exact component={Home} />
                 <Route
@@ -40,6 +44,7 @@ class App extends React.Component {
                 <Route path='/login' exact component={Login} />
                 <Route path='/signup' exact component={SignUp} />
                 <Route path='/cart' exact component={Cart} />
+                <Route path='/wishlist' exact component={WishList} />
               </Switch>
               <AppFooter />
             </div>

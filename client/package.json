@@ -22,6 +22,7 @@
     "react-scripts": "4.0.0",
     "react-slick": "^0.27.13",
     "react-spring": "^8.0.27",
+    "react-toastify": "^7.0.4",
     "react-treeview": "^0.4.7",
     "reactstrap": "^8.7.1",
     "redux": "^4.0.5",

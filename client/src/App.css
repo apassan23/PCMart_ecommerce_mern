@@ -238,3 +238,13 @@
 .clear-btn:focus {
   outline: none;
 }
+
+.toast-body {
+  font-family: 'Fira Sans';
+  color: rgb(110, 105, 105);
+}
+
+.error-toast {
+  font-family: 'Fira Sans';
+  color: whitesmoke;
+}
