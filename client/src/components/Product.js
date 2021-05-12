@@ -7,6 +7,8 @@ import { addItem } from '../actions/cartActions';
 import PropsTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
 import NumberFormat from 'react-number-format';
+import { addItem as addItemtoWishlist } from '../actions/wishlistActions';
+import { toast } from 'react-toastify';
 
 class Product extends React.Component {
   state = {
@@ -18,13 +20,14 @@ class Product extends React.Component {
     loading: PropsTypes.bool.isRequired,
     getProduct: PropsTypes.func.isRequired,
     addItem: PropsTypes.func.isRequired,
+    addItemtoWishlist: PropsTypes.func.isRequired,
   };
 
   componentDidMount() {
     const { product } = this.props;
     if (product && Object.keys(product).length !== 0) {
-      const { details } = this.props.product;
-      this.props.product.details = this.unmangleData(details);
+      const { details } = product;
+      product.details = this.unmangleData(details);
       this.setState({ data: product });
     } else this.props.getProduct(this.props.match.params.id);
   }
@@ -50,6 +53,26 @@ class Product extends React.Component {
 
   addToCart = (event, product) => {
     this.props.addItem({ ...product, qty: 1 });
+    toast(`${product.title} added to cart`, {
+      autoClose: 5000,
+      position: toast.POSITION.TOP_CENTER,
+    });
+  };
+
+  addToWishList = (product) => {
+    const { user } = this.props;
+
+    if (!user) this.props.history.push('/login');
+    else {
+      this.props.addItemtoWishlist({
+        email: user.email,
+        item: product._id,
+      });
+      toast(`${product.title} added to wishlist`, {
+        autoClose: 5000,
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
   };
 
   render() {
@@ -164,9 +187,15 @@ class Product extends React.Component {
                   <button
                     className='custom-btn w-50 mr-4'
                     onClick={(event) => this.addToCart(event, data)}>
+                    <i className='bi bi-handbag mr-2' />
                     Add to Cart
                   </button>
-                  <button className='custom-btn-2 w-50'>Buy Now</button>
+                  <button
+                    className='custom-btn-2 w-50'
+                    onClick={(event) => this.addToWishList(data)}>
+                    <i className='bi bi-bookmark-heart mr-2' />
+                    Add to Wishlist
+                  </button>
                 </div>
               </Col>
             </Row>
@@ -206,6 +235,11 @@ class Product extends React.Component {
 const mapStateToProps = (state) => ({
   product: state.product.product_clicked,
   loading: state.product.loading,
+  user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getProduct, addItem })(Product);
+export default connect(mapStateToProps, {
+  getProduct,
+  addItem,
+  addItemtoWishlist,
+})(Product);
