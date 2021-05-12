@@ -79,8 +79,12 @@ class Featured extends React.Component {
         </div>
         <Row className='products mt-5'>
           {products.map((product, index) => (
-            <Col className='product' md={12 / products.length} xs='12'>
-              <a href='' className='product-link'>
+            <Col
+              className='product'
+              md={12 / products.length}
+              xs='12'
+              key={product.caption}>
+              <a href='/' className='product-link'>
                 <img
                   src={product.src}
                   alt=''
@@ -99,7 +103,7 @@ class Featured extends React.Component {
         </Row>
         <div className='w-100 d-flex justify-content-center'>
           <a
-            href=''
+            href='/'
             className='custom-btn text-uppercase'
             style={{
               padding: '0.7%',

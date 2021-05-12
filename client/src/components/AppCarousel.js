@@ -11,7 +11,8 @@ import { Container, Row, Col } from 'reactstrap';
 import NumberFormat from 'react-number-format';
 import { addItem } from '../actions/cartActions';
 import { connect } from 'react-redux';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
 class AppCarousel extends React.Component {
   state = {
@@ -72,7 +73,7 @@ class AppCarousel extends React.Component {
           className='carousel-provide'>
           <Slider>
             {items.map((item) => (
-              <Slide>
+              <Slide key={item.title}>
                 <Row>
                   <Col
                     md='6'
@@ -143,12 +144,18 @@ class AppCarousel extends React.Component {
                           onClick={(event) => {
                             item.cost = item.discounted;
                             this.props.addItem({ ...item, qty: 1 });
+                            toast(`${item.title} added to cart`, {
+                              autoClose: 5000,
+                              position: toast.POSITION.TOP_CENTER,
+                            });
                           }}>
+                          <i className='bi bi-handbag mr-2' />
                           Add to Cart
                         </button>
                         <button
                           type='button'
                           className='custom-btn-2 w-50 ml-3'>
+                          <i className='bi bi-wallet2 mr-2' />
                           Buy Now
                         </button>
                       </div>

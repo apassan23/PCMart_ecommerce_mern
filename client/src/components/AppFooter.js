@@ -16,7 +16,7 @@ class AppFooter extends React.Component {
             </p>
             <p className='mt-4'>
               <strong>Questions? </strong>
-              <a href=''>support@pcmart.com</a>
+              <a href='/'>support@pcmart.com</a>
             </p>
           </Col>
           <Col md='3'>
