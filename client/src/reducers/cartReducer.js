@@ -18,13 +18,30 @@ const initialState = {
     : 0,
 };
 
-export default function (state = initialState, action) {
+const increaseQty = (products, id) => {
+  return products.map((product) => {
+    if (product._id === id) product.qty += 1;
+    return product;
+  });
+};
+
+const addOrIncQty = (products, item) => {
+  if (
+    products.length !== 0 &&
+    products.map((product) => product._id).includes(item._id)
+  )
+    return increaseQty(products, item._id);
+  else return [...products, item];
+};
+
+export default function cartReducer(state = initialState, action) {
   let reducedState = {};
   switch (action.type) {
     case CART_ADD_ITEM:
+      console.log(state.products.map((product) => product._id));
       reducedState = {
         ...state,
-        products: [...state.products, action.payload],
+        products: addOrIncQty(state.products, action.payload),
         totalItems: state.totalItems + 1,
         totalPrice: state.totalPrice + action.payload.cost,
       };
@@ -45,12 +62,7 @@ export default function (state = initialState, action) {
     case INCREASE_QUANTITY:
       reducedState = {
         ...state,
-        products: state.products.map((product) => {
-          if (product._id === action.payload.id) {
-            product.qty += 1;
-            return product;
-          } else return product;
-        }),
+        products: increaseQty(state.products, action.payload.id),
         totalItems: state.totalItems + 1,
         totalPrice: state.totalPrice + action.payload.cost,
       };
