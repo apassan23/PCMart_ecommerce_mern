@@ -15,7 +15,7 @@ class Cart extends React.Component {
     increaseQty: PropTypes.func.isRequired,
     decreaseQty: PropTypes.func.isRequired,
     deleteItem: PropTypes.func.isRequired,
-    products: PropTypes.object,
+    products: PropTypes.array,
     totalItems: PropTypes.number,
     totalPrice: PropTypes.number,
   };
@@ -34,20 +34,20 @@ class Cart extends React.Component {
       fontSize: '1.5rem',
     };
     return (
-      <Container className='' style={{ height: '100vh' }}>
+      <Container className='' style={{ minHeight: '100vh' }}>
         <h1 className='display-4 text-center mt-5 text-uppercase'>Cart</h1>
         <h4 className='text-center text-muted'>This is the Cart Page.</h4>
         {products && totalItems !== 0 ? (
           <Row className='mt-5 h-75'>
             <Col md='9'>
               {products.map((product) => (
-                <Row className=''>
+                <Row className='' key={product._id}>
                   <Col md='6' className='d-flex'>
                     <img src={product.img[0]} alt='' className='w-25 mr-3' />
                     <div>
                       <h4>{product.title}</h4>
                       <big className='text-muted text-capitalize'>
-                        {product.product_type}
+                        {product.product_type.replace('_', ' ')}
                       </big>
                     </div>
                   </Col>
