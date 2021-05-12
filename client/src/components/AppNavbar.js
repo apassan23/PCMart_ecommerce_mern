@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../actions/authActions';
 import { clear } from '../actions/cartActions';
+import { getItems, clear as clearWishList } from '../actions/wishlistActions';
 
 const AnimatedChevron = ({ angle }) => {
   // TODO: fix chevron icon rotation
@@ -55,6 +56,9 @@ class AppNavbar extends React.Component {
     user: PropTypes.object,
     isAuthenticated: PropTypes.bool.isRequired,
     itemsInCart: PropTypes.any.isRequired,
+    wishlist: PropTypes.object,
+    getItems: PropTypes.func.isRequired,
+    clearWishList: PropTypes.func.isRequired,
   };
 
   toggle = () => {
@@ -79,8 +83,17 @@ class AppNavbar extends React.Component {
   logout = (event) => {
     this.props.logout();
     this.props.clear();
-    window.location.reload();
+    this.props.clearWishList();
+    // this.props.history.push('/');
   };
+
+  componentDidUpdate(prevProps) {
+    const { isAuthenticated, user } = this.props;
+    if (isAuthenticated && prevProps.isAuthenticated !== isAuthenticated) {
+      // console.log(user.email);
+      this.props.getItems(user.email);
+    }
+  }
 
   render() {
     const svgStyle = {
@@ -226,8 +239,8 @@ class AppNavbar extends React.Component {
             </NavItem>
 
             <NavItem>
-              <NavLink href='/'>
-                <i className='bi bi-heart' style={svgStyle} />
+              <NavLink href='/wishlist'>
+                <i className='bi bi-bookmark-heart' style={svgStyle} />
               </NavLink>
             </NavItem>
           </Nav>
@@ -241,6 +254,12 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
   itemsInCart: state.cart.totalItems,
+  wishlist: state.wishlist,
 });
 
-export default connect(mapStateToProps, { logout, clear })(AppNavbar);
+export default connect(mapStateToProps, {
+  logout,
+  clear,
+  getItems,
+  clearWishList,
+})(AppNavbar);
