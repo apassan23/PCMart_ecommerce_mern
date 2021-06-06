@@ -64,7 +64,7 @@ class AppCarousel extends React.Component {
       fontSize: '1.5rem',
     };
     return (
-      <Container className='mt-5'>
+      <Container className='mt-5 app-carousel-container'>
         <h2 className='text-center'>Today's Deals</h2>
         <CarouselProvider
           naturalSlideWidth={100}
@@ -73,11 +73,12 @@ class AppCarousel extends React.Component {
           className='carousel-provide'>
           <Slider>
             {items.map((item) => (
-              <Slide key={item.title}>
+              <Slide key={item.title} className='app-carousel-slide'>
                 <Row>
                   <Col
                     md='6'
-                    className='d-flex justify-content-end align-items-center'>
+                    xs='12'
+                    className='d-flex justify-content-end align-items-center app-carousel-img-container'>
                     <img
                       src={item.img[0]}
                       alt=''
@@ -86,7 +87,8 @@ class AppCarousel extends React.Component {
                   </Col>
                   <Col
                     md='6'
-                    className='d-flex justify-content-start align-items-center'>
+                    xs='12'
+                    className='d-flex justify-content-start align-items-center app-carousel-content-container'>
                     <div className='h-auto'>
                       <h2>{item.title}</h2>
                       <big>
@@ -137,7 +139,7 @@ class AppCarousel extends React.Component {
                         }>
                         {item.availability ? 'In Stock' : 'Out of Stock'}
                       </p>
-                      <div className='d-flex mt-4'>
+                      <div className='d-flex mt-4 carousel-btn-container w-100'>
                         <button
                           type='button'
                           className='custom-btn w-50'

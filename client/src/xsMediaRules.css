@@ -1,0 +1,140 @@
+@media (max-width: 576px) {
+  :root {
+    --content-font-size: 0.5rem;
+    --h4-font-size: 1.2rem;
+    --h3-font-size: 1.3rem;
+    --h2-font-size: 1.5rem;
+    --h1-font-size: 2rem;
+    --arrow-size: 2.5rem;
+    --btn-font-size: 0.5rem;
+  }
+
+  #carousel-title {
+    font-size: var(--h1-font-size) !important;
+  }
+
+  .container-slick {
+    height: 60vh !important;
+  }
+
+  h4 {
+    font-size: var(--h4-font-size) !important;
+  }
+
+  h3 {
+    font-size: var(--h3-font-size) !important;
+  }
+
+  h2 {
+    font-size: var(--h2-font-size) !important;
+  }
+
+  p {
+    font-size: var(--content-font-size) !important;
+  }
+
+  #carousel-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .bi-arrow-left {
+    font-size: var(--arrow-size) !important;
+  }
+
+  .bi-arrow-right {
+    font-size: var(--arrow-size) !important;
+  }
+
+  #showcase-container .custom-btn,
+  #featured-container .custom-btn {
+    font-size: var(--btn-font-size) !important;
+    padding: 0.7rem !important;
+    display: block !important;
+    text-align: center !important;
+  }
+
+  .showcase-item-container {
+    justify-content: center !important;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    order: 2 !important;
+  }
+
+  .showcase-item-container div {
+    padding: 0 !important;
+    width: 85% !important;
+  }
+
+  .showcase-item-container p {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .showcase-item-img {
+    order: 1 !important;
+  }
+
+  .app-carousel-content-container div {
+    width: 85%;
+  }
+
+  .app-carousel-img-container,
+  .app-carousel-content-container {
+    justify-content: center !important;
+  }
+
+  .app-carousel-content-container big {
+    font-size: calc(var(--content-font-size) + 0.8rem) !important;
+  }
+
+  .app-carousel-content-container small {
+    font-size: calc(var(--content-font-size) - 0.1rem) !important;
+  }
+
+  .app-carousel-content-container .carousel-btn-container {
+    flex-direction: column;
+  }
+
+  .carousel-btn-container .custom-btn,
+  .carousel-btn-container .custom-btn-2 {
+    display: block;
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    margin-bottom: 1rem !important;
+    font-size: var(--btn-font-size) !important;
+    padding: 0.7rem !important;
+  }
+
+  .app-carousel-img-container img {
+    height: 80% !important;
+    width: 80% !important;
+  }
+
+  .app-carousel-slide {
+    min-height: 80vh !important;
+  }
+
+  .footer-content {
+    margin-top: 1.5rem !important;
+  }
+
+  .footer-row {
+    padding: 1.5rem !important;
+  }
+
+  .featured-product-img {
+    height: 82% !important;
+    width: 75% !important;
+  }
+
+  .featured-btn {
+    margin-top: 0 !important;
+    display: block !important;
+    width: 75%;
+  }
+
+  #featured-container {
+    padding: 0 !important;
+  }
+}

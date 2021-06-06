@@ -18,6 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './TreeView.css';
 import 'react-toastify/dist/ReactToastify.css';
+import './xsMediaRules.css';
 import { ToastContainer } from 'react-toastify';
 
 class App extends React.Component {

@@ -32,12 +32,12 @@ class Showcase extends React.Component {
   render() {
     const { items } = this.state;
     return (
-      <div className='mt-5 container-fluid'>
+      <div className='mt-5 container-fluid' id='showcase-container'>
         {items.map((item, index) => (
           <Row key={item.headline}>
             <Col
               md='6'
-              className='d-flex align-items-center'
+              className='d-flex align-items-center showcase-item-container'
               style={{
                 order: index % 2 !== 0 ? 2 : 1,
                 justifyContent: index % 2 !== 0 ? 'flex-start' : 'flex-end',
@@ -58,7 +58,7 @@ class Showcase extends React.Component {
             </Col>
             <Col
               md='6'
-              className='p-0'
+              className='p-0 showcase-item-img'
               style={{ order: index % 2 !== 0 ? 1 : 2 }}>
               <img
                 src={item.src}

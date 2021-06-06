@@ -72,7 +72,10 @@ class Featured extends React.Component {
     const { heading, brandTag, products } = this.state;
 
     return (
-      <div className='text-center mt-5' style={{ padding: '0 10% 0 10%' }}>
+      <div
+        className='text-center mt-5'
+        id='featured-container'
+        style={{ padding: '0 10% 0 10%' }}>
         <div className='title'>
           <p className='text-uppercase lead'>{heading}</p>
           <h2 className='text-uppercase'>{brandTag}</h2>
@@ -80,19 +83,23 @@ class Featured extends React.Component {
         <Row className='products mt-5'>
           {products.map((product, index) => (
             <Col
-              className='product'
+              className='featured-product'
               md={12 / products.length}
               xs='12'
               key={product.caption}>
-              <a href='/' className='product-link'>
+              <a href='/' className='featured-product-link'>
                 <img
                   src={product.src}
                   alt=''
-                  className='product-img'
+                  className='featured-product-img'
                   onMouseEnter={(event) => this.setAnimate(index, true)}
                   onMouseLeave={(event) => this.setAnimate(index, false)}
                 />
-                <big className='product-caption'>{product.caption}</big>
+                <p>
+                  <big className='featured-product-caption'>
+                    {product.caption}
+                  </big>
+                </p>
                 <AnimatedPrice
                   toggle={product.price.visible}
                   price={product.price.value}
@@ -104,7 +111,7 @@ class Featured extends React.Component {
         <div className='w-100 d-flex justify-content-center'>
           <a
             href='/'
-            className='custom-btn text-uppercase'
+            className='custom-btn text-uppercase featured-btn'
             style={{
               padding: '0.7%',
               marginTop: '5rem',

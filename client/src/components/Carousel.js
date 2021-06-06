@@ -65,7 +65,8 @@ class Carousel extends React.Component {
                       color: 'white',
                       textShadow: '0 2px 10px rgba(0,0,0,0.5)',
                     }}
-                    className='display-3 font-weight-bold text-uppercase text-wrap slick-text'>
+                    className='display-3 font-weight-bold text-uppercase text-wrap slick-text'
+                    id='carousel-title'>
                     {item.info}
                   </h3>
                   <a className='slick-btn mt-5' href='https://www.amazon.in'>

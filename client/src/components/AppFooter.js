@@ -6,8 +6,8 @@ class AppFooter extends React.Component {
     return (
       <div className='mt-5 container-fluid'>
         <hr />
-        <Row className='p-5'>
-          <Col md='3' className='pr-5'>
+        <Row className='p-5 footer-row'>
+          <Col md='3' className='pr-5 footer-content'>
             <h3 className='text-uppercase'>About PCMart</h3>
             <p className='text-wrap mt-4'>
               PCMart is the leading online platform for every Work Professional,
@@ -19,7 +19,7 @@ class AppFooter extends React.Component {
               <a href='/'>support@pcmart.com</a>
             </p>
           </Col>
-          <Col md='3'>
+          <Col md='3' xs='6' className='footer-content'>
             <h3 className='text-uppercase mb-4'>SHOP</h3>
             <p>Graphics Cards</p>
             <p>Memory Modules</p>
@@ -28,14 +28,14 @@ class AppFooter extends React.Component {
             <p>Processors</p>
             <p>Secondary Storage Devices</p>
           </Col>
-          <Col md='3'>
+          <Col md='3' xs='6' className='footer-content'>
             <h3 className='text-uppercase mb-4'>Information</h3>
             <p>Contact Us</p>
             <p>FAQs</p>
             <p>Shipping & Returns</p>
             <p>Payment Methods</p>
           </Col>
-          <Col md='3'>
+          <Col md='3' xs='12' className='footer-content'>
             <h3 className='text-uppercase mb-4'>Newsletter</h3>
             <p>
               Subscribe to receive updates, access to exclusive deals, and more.

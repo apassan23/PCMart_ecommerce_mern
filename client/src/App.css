@@ -79,11 +79,15 @@
   order: 2;
 }
 
-.product-img {
+.featured-product-img {
   height: 100%;
   width: 100%;
 }
 
+.featured-product-link,
+.featured-product-link:focus,
+.featured-product-link:hover,
+.featured-product-link:link,
 .product-link,
 .product-link:focus,
 .product-link:hover,
