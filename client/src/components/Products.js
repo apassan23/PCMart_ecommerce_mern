@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import TreeView from 'react-treeview';
 import { connect } from 'react-redux';
-import { setProduct } from '../actions/productActions';
+import { setProduct, sortProducts } from '../actions/productActions';
 
 class Products extends React.Component {
   handleClick = (product) => {
@@ -28,8 +28,17 @@ class Products extends React.Component {
             <div className='d-flex align-items-center'>
               <h4 className='text-nowrap'>Sort By</h4>
               <select name='' id='' className='form-control ml-3 h-75'>
-                <option value='price'>Price</option>
-                <option value='ratings'>Ratings</option>
+                <option value=''>No Filter</option>
+                <option
+                  value='price'
+                  onClick={(event) => this.props.sortProducts('cost')}>
+                  Price
+                </option>
+                <option
+                  value='ratings'
+                  onClick={(event) => this.props.sortProducts('rating')}>
+                  Ratings
+                </option>
               </select>
             </div>
           </div>
@@ -68,7 +77,7 @@ class Products extends React.Component {
             <Col md='9'>
               <Row className='mt-4'>
                 {data.map((item) => (
-                  <Col md='4' key={item.id} style={{ height: '40vh' }}>
+                  <Col md='4' key={item.id} style={{ minHeight: '40vh' }}>
                     <Link
                       className='product-link'
                       to={`/product/${item._id}`}
@@ -77,6 +86,7 @@ class Products extends React.Component {
                         src={item.img[0]}
                         alt=''
                         style={{ height: '75%', width: '100%' }}
+                        id='product-img'
                       />
                       <h4 className='text-wrap lead'>{item.title}</h4>
                       <NumberFormat
@@ -105,4 +115,4 @@ class Products extends React.Component {
   }
 }
 
-export default connect(null, { setProduct })(Products);
+export default connect(null, { setProduct, sortProducts })(Products);

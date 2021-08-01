@@ -4,20 +4,23 @@ import {
   GET_PRODUCT,
   PRODUCTS_LOADED,
   PRODUCTS_LOADING,
+  SORT_PRODUCTS,
 } from '../actions/types';
 
 import axios from 'axios';
 
-export const getAllProducts = (product_type = '') => (dispatch) => {
-  dispatch(productsLoading());
-  axios.get(`/api/products/${product_type}`).then((res) => {
-    dispatch({
-      type: GET_ALL_PRODUCTS,
-      payload: res.data,
+export const getAllProducts =
+  (product_type = '') =>
+  (dispatch) => {
+    dispatch(productsLoading());
+    axios.get(`/api/products/${product_type}`).then((res) => {
+      dispatch({
+        type: GET_ALL_PRODUCTS,
+        payload: res.data,
+      });
+      dispatch(productsLoaded());
     });
-    dispatch(productsLoaded());
-  });
-};
+  };
 
 export const setProduct = (product) => (dispatch) => {
   dispatch({
@@ -43,5 +46,12 @@ export const productsLoading = () => (dispatch) => {
 export const productsLoaded = () => (dispatch) => {
   dispatch({
     type: PRODUCTS_LOADED,
+  });
+};
+
+export const sortProducts = (parameter) => (dispatch) => {
+  dispatch({
+    type: SORT_PRODUCTS,
+    payload: parameter,
   });
 };
