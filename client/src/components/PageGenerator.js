@@ -4,44 +4,24 @@ import CustomSpinner from './CustomSpinner';
 import { getAllProducts } from '../actions/productActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import lodash from 'lodash';
 
 class PageGenerator extends React.Component {
-  state = {
-    filterOptions: {},
-  };
-
   static propTypes = {
     products: PropTypes.array.isRequired,
     loading: PropTypes.bool,
+    filters: PropTypes.object,
+    getAllProducts: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.getAllProducts(this.props.match.params.product_type);
+    // if condition to reduce unnecessary re renders
+    if (this.props.products.length === 0)
+      this.props.getAllProducts(this.props.match.params.product_type);
     // console.log(this.props.loading);
   }
 
-  componentDidUpdate(prevprops) {
-    // TODO: Optimise this section
-    if (prevprops.products !== this.props.products) {
-      const { products } = this.props;
-      let keys = Object.keys(products[0].details);
-      let options = {};
-
-      keys.forEach((key) => {
-        let unmangledKey = key.replace('_', ' ');
-        options[unmangledKey] = lodash.sortBy(
-          lodash.uniq(products.map((product) => product.details[key])),
-          (x) => parseInt(x) || parseFloat(x) || x
-        );
-      });
-
-      this.setState({ filterOptions: options });
-    }
-  }
-
   render() {
-    const { products, loading } = this.props;
+    const { products, loading, filters } = this.props;
     return (
       <React.Fragment>
         {loading ? (
@@ -49,7 +29,7 @@ class PageGenerator extends React.Component {
         ) : (
           <Products
             data={products}
-            filterOptions={this.state.filterOptions}
+            filterOptions={filters}
             title={this.props.match.params.product_type
               .replace('_', ' ')
               .toUpperCase()}
@@ -63,6 +43,7 @@ class PageGenerator extends React.Component {
 const mapStateToProps = (state) => ({
   products: state.product.products,
   loading: state.product.loading,
+  filters: state.product.filters,
 });
 
 export default connect(mapStateToProps, { getAllProducts })(PageGenerator);
