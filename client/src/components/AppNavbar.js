@@ -142,10 +142,12 @@ class AppNavbar extends React.Component {
                   </NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href=''>Heat Sinks</NavLink>
+                  <NavLink href='/components/heat_sink'>Heat Sinks</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink href=''>Secondary Memory</NavLink>
+                  <NavLink href='/components/secondary_storage'>
+                    Secondary Memory
+                  </NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -160,16 +162,15 @@ class AppNavbar extends React.Component {
               </DropdownToggle>
               <DropdownMenu nav>
                 <DropdownItem>
-                  <NavLink>External HDD/SSD</NavLink>
+                  <NavLink href='/components/drive_bay'>Drive Bays</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink>Drive Bays</NavLink>
+                  <NavLink href='/components/cooling_fan'>
+                    Cooling Fans / Radiators
+                  </NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink>Cooling Fans / Radiators</NavLink>
-                </DropdownItem>
-                <DropdownItem>
-                  <NavLink>Cables</NavLink>
+                  <NavLink href='/components/cables'>Cables</NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -185,19 +186,19 @@ class AppNavbar extends React.Component {
               </DropdownToggle>
               <DropdownMenu nav>
                 <DropdownItem>
-                  <NavLink>Display Monitors</NavLink>
+                  <NavLink href='monitors'>Display Monitors</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink>Mouse</NavLink>
+                  <NavLink href='/components/mouse'>Mouse</NavLink>
                 </DropdownItem>
                 <DropdownItem>
-                  <NavLink>Keyboards</NavLink>
+                  <NavLink href='/components/keyboard'>Keyboards</NavLink>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
 
             <NavItem>
-              <NavLink href='/'>GAMING PCS</NavLink>
+              <NavLink href='/components/gaming_pcs'>GAMING PCS</NavLink>
             </NavItem>
           </Nav>
 

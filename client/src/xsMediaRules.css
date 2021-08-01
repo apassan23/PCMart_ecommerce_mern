@@ -1,12 +1,13 @@
 @media (max-width: 576px) {
   :root {
-    --content-font-size: 0.5rem;
+    --content-font-size: 0.8rem;
     --h4-font-size: 1.2rem;
     --h3-font-size: 1.3rem;
     --h2-font-size: 1.5rem;
     --h1-font-size: 2rem;
     --arrow-size: 2.5rem;
-    --btn-font-size: 0.5rem;
+    --btn-font-size: 0.8rem;
+    --big-font-size: 1rem;
   }
 
   #carousel-title {
@@ -27,6 +28,10 @@
 
   h2 {
     font-size: var(--h2-font-size) !important;
+  }
+
+  h1 {
+    font-size: var(--h1-font-size);
   }
 
   p {
@@ -136,5 +141,68 @@
 
   #featured-container {
     padding: 0 !important;
+  }
+
+  #cart-details {
+    margin-top: 2em;
+  }
+
+  #product-img {
+    height: 80% !important;
+    width: 86% !important;
+    margin-left: 2%;
+  }
+
+  .product-btns {
+    flex-direction: column;
+  }
+
+  .product-btns .custom-btn,
+  .product-btns .custom-btn-2 {
+    font-size: var(--btn-font-size) !important;
+    padding: 1rem !important;
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 0.8rem;
+  }
+
+  .login-form {
+    width: 85% !important;
+  }
+
+  .login-btns {
+    flex-direction: column;
+  }
+
+  .login-btns .login-btn,
+  .login-btns .signup-btn {
+    font-size: var(--btn-font-size) !important;
+    padding: 1rem !important;
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  .wishlist-btns .custom-btn,
+  .wishlist-btns .custom-btn-2 {
+    font-size: var(--btn-font-size) !important;
+    padding: 0.9rem !important;
+    display: block !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 0.8rem;
+  }
+
+  .spec-container {
+    width: 90% !important;
+    font-size: var(--big-font-size);
+  }
+
+  .spec-text {
+    white-space: nowrap;
+    overflow: scroll;
+    text-overflow: clip;
   }
 }
