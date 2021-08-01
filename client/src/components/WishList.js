@@ -101,7 +101,7 @@ class WishList extends React.Component {
                         />
                       </div>
                     </Col>
-                    <Col md='3'>
+                    <Col md='3' className='wishlist-btns'>
                       <button
                         className='custom-btn-2 btn-block mt-5'
                         onClick={(event) => this.addToCart(product)}>

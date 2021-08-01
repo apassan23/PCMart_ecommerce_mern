@@ -51,7 +51,7 @@ class Cart extends React.Component {
                       </big>
                     </div>
                   </Col>
-                  <Col md='2'>
+                  <Col md='2' xs='4'>
                     <big className='d-flex'>
                       <button
                         className='cart-btn'
@@ -74,7 +74,7 @@ class Cart extends React.Component {
                       </button>
                     </big>
                   </Col>
-                  <Col md='4' className='d-flex justify-content-end'>
+                  <Col md='4' className='d-flex justify-content-end' xs='8'>
                     <NumberFormat
                       value={product.cost * product.qty}
                       displayType={'text'}
@@ -87,7 +87,7 @@ class Cart extends React.Component {
                 </Row>
               ))}
             </Col>
-            <Col md='3' className='h-50'>
+            <Col md='3' className='h-50' id='cart-details'>
               <div
                 className='w-100 p-4'
                 style={{ border: 'solid 1px rgba(170,170,170,0.7)' }}>

@@ -52,14 +52,14 @@ class Login extends React.Component {
           <Redirect to='/' />
         ) : (
           <Container
-            style={{ height: '100vh' }}
+            style={{ minHeight: '100vh' }}
             className='d-flex flex-row justify-content-center'>
             <div className='w-100'>
               <h1 className='text-center mb-5' style={{ marginTop: '15rem' }}>
                 Login to your Account
               </h1>
               <div className='w-100 d-flex justify-content-center'>
-                <Form style={{ width: '40%' }}>
+                <Form style={{ width: '40%' }} className='login-form'>
                   <FormGroup className='mt-5'>
                     <Label for='email' className='form-label'>
                       Email
@@ -102,7 +102,7 @@ class Login extends React.Component {
                     </Alert>
                   ) : null}
 
-                  <div className='mt-5 w-100 d-flex'>
+                  <div className='mt-5 w-100 d-flex login-btns'>
                     <button
                       className='login-btn mr-4 w-50'
                       type='submit'

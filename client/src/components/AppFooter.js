@@ -32,7 +32,7 @@ class AppFooter extends React.Component {
             <h3 className='text-uppercase mb-4'>Information</h3>
             <p>Contact Us</p>
             <p>FAQs</p>
-            <p>Shipping & Returns</p>
+            <p>Shipping &amp; Returns</p>
             <p>Payment Methods</p>
           </Col>
           <Col md='3' xs='12' className='footer-content'>

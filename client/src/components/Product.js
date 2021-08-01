@@ -84,7 +84,7 @@ class Product extends React.Component {
     let deliveryDate = new Date();
     deliveryDate.setDate(deliveryDate.getDate() + 2);
     let content = (
-      <Container style={{ height: '100vh' }} className=''>
+      <Container style={{ minHeight: '100vh' }} className=''>
         {Object.keys(data).length !== 0 ? (
           <React.Fragment>
             <h4 className='mt-5 text-capitalize'>
@@ -183,7 +183,7 @@ class Product extends React.Component {
                   </span>
                 </p>
 
-                <div className='d-flex mt-5'>
+                <div className='d-flex mt-5 product-btns'>
                   <button
                     className='custom-btn w-50 mr-4'
                     onClick={(event) => this.addToCart(event, data)}>
@@ -208,13 +208,13 @@ class Product extends React.Component {
                   md='12'
                   xs='12'
                   className='mt-3 d-flex justify-content-center'>
-                  <big className='d-flex justify-content-between w-75'>
+                  <big className='d-flex justify-content-between w-75 spec-container'>
                     <span
                       className='text-capitalize'
                       style={{ fontWeight: 'bold' }}>
                       {key}
                     </span>
-                    <span className=''>{data.details[key]}</span>
+                    <span className='spec-text'>{data.details[key]}</span>
                   </big>
                 </Col>
               ))}
