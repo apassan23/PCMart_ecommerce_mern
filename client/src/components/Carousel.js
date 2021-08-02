@@ -69,7 +69,7 @@ class Carousel extends React.Component {
                     id='carousel-title'>
                     {item.info}
                   </h3>
-                  <a className='slick-btn mt-5' href='https://www.amazon.in'>
+                  <a className='slick-btn mt-5' href='/components/keyboard'>
                     SHOP NOW
                   </a>
                 </div>
