@@ -18,6 +18,17 @@ mongoose
   .then(() => console.log('> MongoDB Connected...'))
   .catch((err) => console.log(err));
 
+// Serve Static files assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set Static folder
+  app.use(express.static('client/build'));
+  // Any requests that we haven't specified with express
+  // will re route here
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 app.use('/api/products', require('./routes/api/products'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
