@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
         if (isMatch)
           jwt.sign(
             { id: user._id },
-            config.get('jwtSecret'),
+            process.env.jwtSecret || config.get('jwtSecret'),
             { expiresIn: 3600 },
             (err, token) => {
               if (err) throw err;
