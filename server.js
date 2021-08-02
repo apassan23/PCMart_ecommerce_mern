@@ -19,6 +19,11 @@ mongoose
   .then(() => console.log('> MongoDB Connected...'))
   .catch((err) => console.log(err));
 
+app.use('/api/products', require('./routes/api/products'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/wishlist', require('./routes/api/wishlist'));
+
 // Serve Static files assets if in production
 if (process.env.NODE_ENV === 'production') {
   // Set Static folder
@@ -29,10 +34,5 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-app.use('/api/products', require('./routes/api/products'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/wishlist', require('./routes/api/wishlist'));
 
 app.listen(PORT, () => console.log(`> Server started at ${PORT}`));
